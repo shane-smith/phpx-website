@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\MeetupResource\Pages;
+use App\Filament\Tables\Actions\DuplicateAction;
 use App\Filament\Resources\MeetupResource\RelationManagers;
 use App\Models\Group;
 use App\Models\Meetup;
@@ -119,9 +120,7 @@ class MeetupResource extends Resource
 			->filters([])
 			->actions([
 				Tables\Actions\EditAction::make(),
-				Tables\Actions\Action::make('duplicate')
-					->icon('heroicon-o-document-duplicate')
-					->url(fn(Meetup $record) => static::getUrl('create', ['duplicate' => $record->getKey()])),
+				DuplicateAction::make(),
 			])
 			->bulkActions([
 				Tables\Actions\BulkActionGroup::make([
