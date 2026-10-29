@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\MeetupResource\Pages;
-use App\Filament\Tables\Actions\DuplicateAction;
 use App\Filament\Resources\MeetupResource\RelationManagers;
 use App\Models\Group;
 use App\Models\Meetup;
@@ -120,7 +119,7 @@ class MeetupResource extends Resource
 			->filters([])
 			->actions([
 				Tables\Actions\EditAction::make(),
-				DuplicateAction::make(),
+				\App\Filament\Tables\Actions\DuplicateAction::make(),
 			])
 			->bulkActions([
 				Tables\Actions\BulkActionGroup::make([

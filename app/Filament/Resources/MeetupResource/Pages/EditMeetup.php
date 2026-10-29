@@ -3,7 +3,6 @@
 namespace App\Filament\Resources\MeetupResource\Pages;
 
 use App\Actions\GenerateOpenGraphImage;
-use App\Filament\Actions\DuplicateAction;
 use App\Filament\Resources\MeetupResource;
 use App\Models\Meetup;
 use Filament\Actions;
@@ -17,7 +16,7 @@ class EditMeetup extends EditRecord
 	protected function getHeaderActions(): array
 	{
 		return [
-			DuplicateAction::make(),
+			\App\Filament\Actions\DuplicateAction::make(),
 			Actions\DeleteAction::make(),
 			Actions\Action::make('view')
 				->icon('heroicon-o-arrow-top-right-on-square')
