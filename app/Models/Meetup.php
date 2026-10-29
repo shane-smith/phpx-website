@@ -62,6 +62,23 @@ class Meetup extends Model implements Htmlable
 		return $query->where('ends_at', '>', $at ?? now());
 	}
 	
+	/**
+	 * @return array<string, mixed>
+	 */
+	public function toDuplicateAttributes(): array
+	{
+		return [
+			'group_id' => $this->group_id,
+			'location' => $this->location,
+			'capacity' => $this->capacity,
+			'description' => $this->description,
+			'external_rsvp_url' => $this->external_rsvp_url,
+			'custom_open_graph_image' => $this->custom_open_graph_image,
+			'starts_at' => $this->starts_at->avoidMutation()->setDateFrom(now()->addWeek()),
+			'ends_at' => $this->ends_at->avoidMutation()->setDateFrom(now()->addWeek()),
+		];
+	}
+	
 	public function group(): BelongsTo
 	{
 		return $this->belongsTo(Group::class);

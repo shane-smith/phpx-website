@@ -53,14 +53,14 @@ class MeetupResource extends Resource
 				Forms\Components\DateTimePicker::make('starts_at')
 					->label('Start')
 					->required()
-					->default(fn() => $latest_meetup?->starts_at->avoidMutation()->setDateFrom(now()->addWeek()))
+					->default(fn() => $latest_meetup?->toDuplicateAttributes()['starts_at'])
 					->timezone(fn(Meetup $meetup) => $meetup->group?->timezone ?? $group->timezone ?? config('app.timezone'))
 					->beforeOrEqual('ends_at')
 					->rules(['required', 'date']),
 				Forms\Components\DateTimePicker::make('ends_at')
 					->label('End')
 					->required()
-					->default(fn() => $latest_meetup?->ends_at->avoidMutation()->setDateFrom(now()->addWeek()))
+					->default(fn() => $latest_meetup?->toDuplicateAttributes()['ends_at'])
 					->timezone(fn(Meetup $meetup) => $meetup->group?->timezone ?? $group->timezone ?? config('app.timezone'))
 					->afterOrEqual('starts_at')
 					->rules(['required', 'date']),

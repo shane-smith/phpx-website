@@ -17,26 +17,9 @@ class CreateMeetup extends CreateRecord
 
 		$source = Meetup::query()->find(request()->query('duplicate'));
 
-		$this->form->fill($source ? $this->getDuplicatedData($source) : []);
+		$this->form->fill($source ? $source->toDuplicateAttributes() : []);
 
 		$this->callHook('afterFill');
-	}
-
-	/**
-	 * @return array<string, mixed>
-	 */
-	protected function getDuplicatedData(Meetup $source): array
-	{
-		return [
-			'group_id' => $source->group_id,
-			'location' => $source->location,
-			'capacity' => $source->capacity,
-			'description' => $source->description,
-			'external_rsvp_url' => $source->external_rsvp_url,
-			'custom_open_graph_image' => $source->custom_open_graph_image,
-			'starts_at' => $source->starts_at->avoidMutation()->setDateFrom(now()->addWeek()),
-			'ends_at' => $source->ends_at->avoidMutation()->setDateFrom(now()->addWeek()),
-		];
 	}
 
 	protected function afterCreate()
