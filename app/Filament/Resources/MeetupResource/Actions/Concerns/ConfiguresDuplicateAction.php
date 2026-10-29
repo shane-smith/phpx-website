@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Actions\Concerns;
+namespace App\Filament\Resources\MeetupResource\Actions\Concerns;
 
 use App\Filament\Resources\MeetupResource;
 use App\Models\Meetup;

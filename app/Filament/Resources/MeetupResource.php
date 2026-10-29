@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Resources\MeetupResource\Actions;
 use App\Filament\Resources\MeetupResource\Pages;
 use App\Filament\Resources\MeetupResource\RelationManagers;
 use App\Models\Group;
@@ -119,7 +120,7 @@ class MeetupResource extends Resource
 			->filters([])
 			->actions([
 				Tables\Actions\EditAction::make(),
-				\App\Filament\Tables\Actions\DuplicateAction::make(),
+				Actions\DuplicateTableAction::make(),
 			])
 			->bulkActions([
 				Tables\Actions\BulkActionGroup::make([
